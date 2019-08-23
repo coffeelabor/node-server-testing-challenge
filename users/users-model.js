@@ -7,22 +7,35 @@ module.exports = {
   findById
 };
 
-function find() {
-  return db("users").select("id", "username");
-}
-
 // function find() {
-//   return db("users")
-//     .select(
-//       "user.id",
-//       "user.username",
-//       "user.password",
-//       "positions.name",
-//       "departments.name"
-//     )
-//     .innerJoin("positions", "positions.id", "users.positions_id")
-//     .innerJoin("departments", "departments.id", "users.departments_id");
+//   return db("users").select("id", "username");
 // }
+
+function find() {
+  //   return db("users")
+  //     .select(
+  //       "user.id",
+  //       "user.username",
+  //       "user.password",
+  //       "positions.name",
+  //       "departments.name"
+  //     )
+  //     .innerJoin("positions", "positions.id", "=", "users.positions_id")
+  //     .innerJoin("departments", "departments.id", "=", "users.departments_id");
+  //    .innerJoin("positions", "positions.id", "users.positions_id")
+  //    .innerJoin("departments", "departments.id", "users.departments_id");
+
+  return db("users as u")
+    .select(
+      "u.id",
+      "u.username",
+      "u.password",
+      "positions.name",
+      "departments.name"
+    )
+    .innerJoin("positions", "positions.id", "=", "users.positions_id")
+    .innerJoin("departments", "departments.id", "=", "users.departments_id");
+}
 
 function findBy(filter) {
   return db("users")
