@@ -30,11 +30,11 @@ function find() {
       "u.id",
       "u.username",
       "u.password",
-      "positions.name",
-      "departments.name"
+      "p.name as position_Name",
+      "d.name as department_Name"
     )
-    .innerJoin("positions", "positions.id", "=", "users.positions_id")
-    .innerJoin("departments", "departments.id", "=", "users.departments_id");
+    .innerJoin("positions as p", "p.id", "=", "u.positions_id")
+    .innerJoin("departments as d", "d.id", "=", "u.departments_id");
 }
 
 function findBy(filter) {
